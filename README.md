@@ -7,7 +7,7 @@ For any queries contact: subhashchandra.pujari@de.bosch.com
 Please reference the paper using:
 
 ```
-@inproceedings{lange-etal-2020-closing,
+@inproceedings{pujari-etal-2021,
     title = "A Multi-Task Approach to Neural Multi-Label Hierarchical Patent Classification using Transformers",
     author = {Subhash Chandra Pujari and Annemarie Friedrich and
       Str{\"o}tgen, Jannik},
