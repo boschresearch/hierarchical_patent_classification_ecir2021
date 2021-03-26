@@ -2,12 +2,10 @@
 ## A Multi-Task Approach to Neural Multi-Label Hierarchical Patent Classification using Transformers
 This is the companion code for the experiments reported in the paper "A Multi-Task Approach to Neural Multi-Label Hierarchical Patent Classification using Transformers"  by 
 Subhash Chandra Pujari, Annemarie Friedrich and Jannik Strötgen published at ECIR 2021.
-The code allows the users to reproduce the results reported in the paper and extend the model to new datasets and hierarchical multilabel classification configurations. 
-Please cite the above paper when reporting, reproducing or extending the results as:
-
-## Dataset
-Dataset can be found in the folder as data/uspto-release.
-
+The code allows the users to reproduce the results reported in the paper and extend the model to 
+new datasets and hierarchical multilabel classification configurations. 
+For any queries regarding code or dataset, you can contact [Subhash Pujari](subhashchandra.pujari@de.bosch.com)
+Please cite the paper when reporting, reproducing or extending the results as:
 ## Citation
 ```
 @inproceedings{pujari-etal-2021,
@@ -21,6 +19,9 @@ Dataset can be found in the folder as data/uspto-release.
 }
 ```
 
+## Dataset
+Dataset can be found in the folder as data/uspto-release.
+
 ## Purpose of the project
 This software is a research prototype, solely developed for and published as part of the publication 
 "A Multi-Task Approach to Neural Multi-Label Hierarchical Patent Classification using Transformers", ECIR 2021. It will
@@ -28,7 +29,7 @@ neither be maintained nor monitored in any way.
 
 ## Setup
 * pip install -r requirements.txt
-* update the config file to provide directory paths and model parameyters
+* update the config file to provide directory paths and model parameters. Sample config can be found in ./config/ folder.
 * python main.py --config-file <path-to-config-file> --op <train/test>
 
 ## License
