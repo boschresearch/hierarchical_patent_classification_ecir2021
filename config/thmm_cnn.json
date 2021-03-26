@@ -1,0 +1,16 @@
+{
+  "model": "THMM",
+  "experiment_dir": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_thmm_cnn",
+  "data_dir": "/home/ujp5kor/bosch/code/ecir-2021-code/data/uspto-debug",
+  "embedding_dir": "/home/ujp5kor/bosch/code/patent_cpc_multilabel_classification/embeddings/scibert-scivocab-uncased",
+  "input_type": "CNN",
+  "dense_layer_size": 256,
+  "kernels": [3, 4, 5],
+  "filter_size": 512,
+  "epoch": 10,
+  "batch_size": 2,
+  "max_len": 256,
+  "dropout_rate": 0.25,
+  "learning_rate": 1e-05,
+  "bert_trainable": true
+}

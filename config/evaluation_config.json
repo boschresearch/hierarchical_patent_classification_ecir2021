@@ -1,0 +1,38 @@
+[
+    {
+        "exp_label": "flat-cnn",
+        "model_type": "flat",
+        "dir": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_flat_cnn",
+        "binarizer_hierarchical": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_tmm_cls/binarizer.pkl"
+    },
+    {
+        "exp_label": "TMM-cnn",
+        "model_type": "hier",
+        "dir": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_tmm_cnn",
+       "binarizer_hierarchical": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_tmm_cls/binarizer.pkl"
+    },
+    {
+        "exp_label": "THMM-cnn",
+        "model_type": "hier",
+        "dir": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_thmm_cnn",
+        "binarizer_hierarchical": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_tmm_cls/binarizer.pkl"
+    },
+    {
+        "exp_label": "flat-cls",
+        "model_type": "flat",
+        "dir": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_flat_cls",
+        "binarizer_hierarchical": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_tmm_cls/binarizer.pkl"
+    },
+    {
+        "exp_label": "TMM-cls",
+        "model_type": "hier",
+        "dir": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_tmm_cls",
+       "binarizer_hierarchical": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_tmm_cls/binarizer.pkl"
+    },
+    {
+        "exp_label": "THMM-cls",
+        "model_type": "hier",
+        "dir": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_thmm_cls",
+        "binarizer_hierarchical": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_tmm_cls/binarizer.pkl"
+    }
+]
