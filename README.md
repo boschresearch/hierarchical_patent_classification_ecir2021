@@ -4,7 +4,7 @@ This is the companion code for the experiments reported in the paper "A Multi-Ta
 Subhash Chandra Pujari, Annemarie Friedrich and Jannik Strötgen published at ECIR 2021.
 The code allows the users to reproduce the results reported in the paper and extend the model to 
 new datasets and hierarchical multilabel classification configurations. 
-For any queries regarding code or dataset, you can contact [Subhash Pujari](subhashchandra.pujari@de.bosch.com)
+For any queries regarding code or dataset, you can contact [Subhash Pujari](subhashchandra.pujari@de.bosch.com). 
 Please cite the paper when reporting, reproducing or extending the results as:
 ## Citation
 ```
