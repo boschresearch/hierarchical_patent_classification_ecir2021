@@ -116,7 +116,7 @@ class ModelBase:
                                           kernel_size=kernel,
                                           activation='relu')(seq_output)
             drop = tf.keras.layers.Dropout(self.dropout_rate)(conv)
-            pool = tf.keras.layers.MaxPooling1D(pool_size=self.max_len - (index + 2) - 1)(drop)
+            pool = tf.keras.layers.GlobalMaxPooling1D()(drop)
             flat = tf.keras.layers.Flatten()(pool)
             conv_layers.append(flat)
         merged = tf.keras.layers.concatenate(conv_layers)
