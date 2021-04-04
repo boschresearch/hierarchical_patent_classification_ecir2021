@@ -30,7 +30,7 @@ neither be maintained nor monitored in any way.
 ## Setup
 * pip install -r requirements.txt
 * update the config file to provide directory paths and model parameters. Sample config can be found in ./config/ folder.
-* python main.py --config_file <path-to-config-file> --op <train/test>
+* python main.py --config_file path-to-config-file --op <train/test>
 
 ## License
 The code is open-sourced under the AGPL-3.0 license. See the [LICENSE](LICENSE) file for details.
