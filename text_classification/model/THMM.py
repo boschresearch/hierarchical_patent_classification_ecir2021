@@ -39,7 +39,7 @@ class THMM(ModelBase):
             self.dense_layer_dict[node] = (output, drop_hidden_layer_2)
             if len(successors):
                 for successor in successors:
-                    self.create_dense(successor, merged, output)
+                    self.create_dense(successor, merged, drop_hidden_layer_2)
             else:
                 return
 
