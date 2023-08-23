@@ -23,12 +23,12 @@ import tensorflow_addons as tfa
 from transformers import TFBertModel
 
 from text_classification.model.callbacks import Callback
-from text_classification.utils.utils import get_metrics
+# from text_classification.utils.utils import get_metrics
 
 
 class ModelBase:
 
-    def __init__(self, config, data_loader, binarizer):
+    def __init__(self, config, data_loader, binarizer, evaluator):
         """
         Constructor.
         :param config: dict, condiguration of the experiment.
@@ -53,6 +53,7 @@ class ModelBase:
         self.binarizer = binarizer
         self.data_loader = data_loader
         self.callback = None
+        self.evaluator = evaluator
 
     def init_model(self):
         """
@@ -77,7 +78,8 @@ class ModelBase:
                                  metrics,
                                  patience=5,
                                  base_epoch=base_epoch,
-                                 best_f1_macro=best_f1_macro)
+                                 best_f1_macro=best_f1_macro,
+                                 evaluator=self.evaluator)
         return self
 
     def generate_document_representation(self):
@@ -139,7 +141,7 @@ class ModelBase:
         self.model = tf.keras.models.Model(bert_input, outputs)
         adam_optimizer = tfa.optimizers.AdamW(weight_decay=0, learning_rate=self.learning_rate)
         self.model.compile(optimizer=adam_optimizer, loss='binary_crossentropy')
-        tf.keras.utils.plot_model(self.model, to_file=os.path.join(self.experiment_dir, "model.png"), show_shapes=True)
+        # tf.keras.utils.plot_model(self.model, to_file=os.path.join(self.experiment_dir, "model.png"), show_shapes=True)
         return self
 
     def train(self):
@@ -165,10 +167,14 @@ class ModelBase:
         pickle.dump(y_pred, open(os.path.join(self.experiment_dir, "y_pred_test.pkl"), "wb"))
         y_pred = self.binarizer.mlb_train.get_sklearn_mlb_from_pred(y_pred)
         y_test_actual = self.binarizer.mlb_train.get_sklearn_mlb_from_pred(self.data_loader.y_test_bin)
+        
+        metrics, y_pred = self.evaluator.get_metrics(y_test_actual, y_pred)
+
+        y_pred = self.evaluator.mlb.inverse_transform(y_pred)
 
         open(os.path.join(self.experiment_dir, "y_pred_test.txt"), "w").write(
             "\n".join([",".join(list(item[0])) + ":" + ",".join(list(item[1])) for item in zip(
                 self.binarizer.mlb_train.mlb.inverse_transform(y_test_actual),
-                self.binarizer.mlb_train.mlb.inverse_transform(y_pred))
-                       ]))
-        print(get_metrics(y_test_actual, y_pred))
+                y_pred)]))
+        
+        print(metrics)

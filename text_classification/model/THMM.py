@@ -19,8 +19,8 @@ from text_classification.model.base import ModelBase
 
 class THMM(ModelBase):
 
-    def __init__(self, config, data_loader, binarizer, graph):
-        super(THMM, self).__init__(config, data_loader, binarizer)
+    def __init__(self, config, data_loader, binarizer, graph, evaluator):
+        super(THMM, self).__init__(config, data_loader, binarizer, evaluator)
         self.dense_layer_dict = dict()
         self.graph = graph
 

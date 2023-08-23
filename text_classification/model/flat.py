@@ -19,11 +19,11 @@ from text_classification.model.base import ModelBase
 
 class Flat(ModelBase):
 
-    def __init__(self, config, data_loader, binarizer):
+    def __init__(self, config, data_loader, binarizer, evaluator):
         """
         :param config: contains the configuration to initailize a dataset and model.
         """
-        super(Flat, self).__init__(config, data_loader, binarizer)
+        super(Flat, self).__init__(config, data_loader, binarizer, evaluator)
 
     def define_core_architecture(self, doc_representation):
         """

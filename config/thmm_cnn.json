@@ -1,8 +1,8 @@
 {
   "model": "THMM",
-  "experiment_dir": "/home/ujp5kor/bosch/code/ecir-2021-code/experiments/exp_thmm_cnn",
-  "data_dir": "/home/ujp5kor/bosch/code/ecir-2021-code/data/uspto-debug",
-  "embedding_dir": "/home/ujp5kor/bosch/code/patent_cpc_multilabel_classification/embeddings/scibert-scivocab-uncased",
+  "experiment_dir": "./output_dir/experiment-cpc-ecir/exp_thmm_cnn",
+  "data_dir": "./data/uspto-debug",
+  "embedding_dir": "/fs/scratch/rng_cr_bcai_dl_students/r26/huggingface-transformers/scibert_scivocab_uncased",
   "input_type": "CNN",
   "dense_layer_size": 256,
   "kernels": [3, 4, 5],

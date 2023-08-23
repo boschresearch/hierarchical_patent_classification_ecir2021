@@ -19,14 +19,14 @@ from text_classification.model.base import ModelBase
 
 class TMM(ModelBase):
 
-    def __init__(self, config, data_loader, binarizer):
+    def __init__(self, config, data_loader, binarizer, evaluator):
         """
         Constructor.
         :param config: dict, configuration to load the model.
         :param data_loader: DataLoader object.
         :param binarizer: Binarizer object.
         """
-        super(TMM, self).__init__(config, data_loader, binarizer)
+        super(TMM, self).__init__(config, data_loader, binarizer, evaluator)
         self.dense_layer_dict = dict()
 
     def define_core_architecture(self, doc_representation):

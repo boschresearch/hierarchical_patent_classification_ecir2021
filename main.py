@@ -21,7 +21,7 @@ from text_classification.model.TMM import TMM
 from text_classification.model.binarizer import BinarizerDataset, BinarizerTHMM_TMM, BinarizerFlat
 from text_classification.model.flat import Flat
 from text_classification.utils.common import DataLoader
-from text_classification.utils.utils import create_hierarchical_tree
+from text_classification.utils.utils import create_hierarchical_tree, Evaluator
 
 import argparse
 import tensorflow as tf
@@ -46,17 +46,19 @@ def main():
         data_loader.load().initialize_bert_input()
         binarizer = BinarizerDataset(data_loader, BinarizerFlat)
         data_loader.binarize(binarizer)
-        model = Flat(config, data_loader, binarizer)
+        evaluator = Evaluator(binarizer.mlb_train.mlb)
+        model = Flat(config, data_loader, binarizer, evaluator)
     elif config["model"] == "TMM" or config["model"] == "THMM":
         data_loader.load(expand_label=True).initialize_bert_input()
         binarizer = BinarizerDataset(data_loader, BinarizerTHMM_TMM)
         data_loader.binarize(binarizer)
+        evaluator = Evaluator(binarizer.mlb_train.mlb)
         if config["model"] == "TMM":
-            model = TMM(config, data_loader, binarizer)
+            model = TMM(config, data_loader, binarizer, evaluator)
         elif config["model"] == "THMM":
             child_labels = [[label for label in labels if len(label) == 4] for labels in data_loader.y_train_raw]
             graph = create_hierarchical_tree(child_labels)
-            model = THMM(config, data_loader, binarizer, graph=graph)
+            model = THMM(config, data_loader, binarizer, graph, evaluator)
     else:
         raise ValueError("The model %s not supported." % config["model"])
 

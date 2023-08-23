@@ -85,23 +85,57 @@ def create_hierarchical_tree(labels):
     return g
 
 
-def get_metrics(y_actual, y_pred):
-    """
-    Create the metrics with precision, recall and f1-score (micro, macro)
-    :param y_actual: numpy array
-    :param y_pred: numpy array
-    :return: dict
-    """
-    precision_macro, recall_macro, f1_macro = precision_recall_f1(y_actual, y_pred, avg='macro')
-    precision_micro, recall_micro, f1_micro = precision_recall_f1(y_actual, y_pred, avg='micro')
-    f1_avg = (2 * f1_macro * f1_micro) / (f1_macro + f1_micro)
-    return {
-        'precision_micro': round(precision_micro, 4),
-        'recall_micro': round(recall_micro, 4),
-        'f1_micro': round(f1_micro, 4),
-        'precision_macro': round(precision_macro, 4),
-        'recall_macro': round(recall_macro, 4),
-        'f1_macro': round(f1_macro, 4),
-        'f1_avg': round(f1_avg, 4)
-    }
+import numpy as np
+from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.metrics import precision_score, recall_score, f1_score
+
+
+class Evaluator:
+
+    def __init__(self, mlb):
+        self.mlb = mlb
+
+    def calc_metrics(self, true, pred) -> dict:
+        return {
+            "precision_macro": round(precision_score(true, pred, average="macro"), 3),
+            "recall_macro": round(recall_score(true, pred, average="macro"), 3),
+            "f1_macro": round(f1_score(true, pred, average="macro"), 3),
+            "precision_micro": round(precision_score(true, pred, average="micro"), 3),
+            "recall_micro": round(recall_score(true, pred, average="micro"), 3),
+            "f1_micro": round(f1_score(true, pred, average="micro"), 3),
+        }
+
+
+    def expand_labels(self, 
+                    predicted_labels_list) -> list:
+        
+        pred_labels_list_exp = list()
+        for y in predicted_labels_list:
+            exp_labels = set()
+
+            for label in y:
+                exp_labels.add(label)
+                if len(label) == 3:
+                    exp_labels.add(label[:1])
+                elif len(label) == 4:
+                    exp_labels.add(label[:1])
+                    exp_labels.add(label[:3])
+
+            pred_labels_list_exp.append(list(exp_labels))
+        return pred_labels_list_exp
+
+
+    def get_metrics(self,
+                actual : np.ndarray, 
+                pred: np.ndarray):
+
+        pred_labels = self.mlb.inverse_transform(pred)
+        
+        pred_labels = self.expand_labels(pred_labels)
+        
+        pred_labels = self.mlb.transform(pred_labels)
+
+        metrics = self.calc_metrics(actual, pred_labels)
+
+        return metrics, pred
 
